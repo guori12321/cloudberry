@@ -46,7 +46,7 @@ class Cloudberry @Inject()(val wsClient: WSClient,
       case _ => throw new IllegalArgumentException(s"unknown asterixdb.lang option:${config.AsterixLang}")
     }
 
-  Await.result(Migration_20160814.migration.up(asterixConn), 10.seconds)
+  Await.result(Migration_20160814.migration.up(asterixConn), 100.seconds)
 
   val manager = system.actorOf(DataStoreManager.props(Migration_20160814.berryMeta, asterixConn, qlGenerator, config))
 
